@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Service\ServAuthInterface;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\RegisterVerifRequest;
 
 class AuthController extends Controller
 {
@@ -13,16 +13,16 @@ class AuthController extends Controller
     {
         $this->authService = $authService;
     }
-    public function register(RegisterRequest $request)
+    public function registerVerif(RegisterVerifRequest $request)
     {
-        try {
-            return $this->authService->register($request->all());
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage()], 400);
-        }
+        return $this->authService->registerVerif($request->all());
     }
     public function login(LoginRequest $request)
     {
         return $this->authService->login($request->all());
+    }
+    public function register($token)
+    {
+        return $this->authService->register($token);
     }
 }

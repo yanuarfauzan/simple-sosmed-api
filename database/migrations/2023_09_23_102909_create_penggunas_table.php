@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('pengguna', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nama_pengguna', 25)->nullable();
-            $table->string('nama_belakang', 25)->nullable();
+            $table->string('username')->nullable();
             $table->string('email', 255)->nullable();
+            $table->string('password', 255)->nullable();
+            $table->string('nama_depan', 25)->nullable();
+            $table->string('nama_belakang', 25)->nullable();
             $table->string('profil_path')->nullable();
             $table->string('alamat', 500)->nullable();
             $table->string('pekerjaan', 25)->nullable();
             $table->bigInteger('dilihat_berapa_kali')->nullable();
+            $table->string('token_verify', 64)->nullable();
+            $table->boolean('is_verify')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

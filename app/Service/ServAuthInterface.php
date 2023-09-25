@@ -4,7 +4,8 @@ namespace App\Service;
 
 interface ServAuthInterface
 {
-    public function register($data);
+    public function registerVerif($data);
     public function login($data);
     public function checkPengguna($data);
+    public function register($token);
 }

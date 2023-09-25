@@ -16,13 +16,17 @@ class Pengguna extends Model
 
     protected $table = 'pengguna';
     protected $fillable = [
-        'nama_pengguna',	
+        'username',
+        'nama_depan',	
         'nama_belakang',
         'email',
+        'password',
         'profil_path',
         'alamat',
         'pekerjaan',
         'dilihat_berapa_kali',
+        'token_verify',
+        'is_verify',
         'deleted_at',	
         'created_at',
         'updated_at'
