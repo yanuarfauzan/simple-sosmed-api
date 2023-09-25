@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('pekerjaan', 25)->nullable();
             $table->bigInteger('dilihat_berapa_kali')->nullable();
             $table->string('token_verify', 64)->nullable();
+            $table->string('token_reset', 64)->nullable();
             $table->boolean('is_verify')->nullable();
             $table->softDeletes();
             $table->timestamps();

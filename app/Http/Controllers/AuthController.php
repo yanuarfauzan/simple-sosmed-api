@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Service\ServAuthInterface;
 use App\Http\Requests\RegisterVerifRequest;
-
+use GuzzleHttp\Client;
 class AuthController extends Controller
 {
     protected $authService;

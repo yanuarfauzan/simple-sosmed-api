@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ResetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,9 @@ use App\Http\Controllers\AuthController;
 Route::post('/registerVerif', [AuthController::class, 'registerVerif']);
 Route::put('/register/{token}', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/forgotPassword', [ResetPasswordController::class, 'forgotPassword']);
+Route::put('/resetPassword/{token}', [ResetPasswordController::class, 'resetPassword']);
+Route::get('/getPengguna', function () {
+    $pengguna = Pengguna::all();
+    return $pengguna;
+});
