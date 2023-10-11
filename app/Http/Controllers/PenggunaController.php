@@ -4,62 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use App\Service\ServPenggunaInterface;
+use App\Http\Requests\AddDelTemanRequest;
+use App\Http\Requests\EditProfileRequest;
 
 class PenggunaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $penggunaService;
+    public function __construct(ServPenggunaInterface $penggunaService)
     {
-        //
+        $this->penggunaService = $penggunaService;
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function editProfile(EditProfileRequest $request)
     {
-        //
+        return $this->penggunaService->editProfile($request->all());
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function addTeman(AddDelTemanRequest $request)
     {
-        //
+        return $this->penggunaService->addDelTeman($request->all());
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Pengguna $pengguna)
+    public function showTeman()
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Pengguna $pengguna)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Pengguna $pengguna)
-    {
-        //
+        return $this->penggunaService->showTeman();
     }
 }
