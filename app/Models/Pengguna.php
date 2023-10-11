@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Models\Postingan;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class Pengguna extends Model
 {
@@ -17,7 +18,7 @@ class Pengguna extends Model
     protected $table = 'pengguna';
     protected $fillable = [
         'username',
-        'nama_depan',	
+        'nama_depan',
         'nama_belakang',
         'email',
         'password',
@@ -27,7 +28,7 @@ class Pengguna extends Model
         'dilihat_berapa_kali',
         'token_verify',
         'is_verify',
-        'deleted_at',	
+        'deleted_at',
         'created_at',
         'updated_at'
     ];
@@ -39,5 +40,17 @@ class Pengguna extends Model
     public function getKeyType()
     {
         return 'string';
+    }
+    public function postingan()
+    {
+        return $this->belongsTo(Postingan::class);
+    }
+    public function commentPostingan()
+    {
+        return $this->belongsToMany(Postingan::class, 'komentar', 'pengguna_id', 'postingan_id');
+    }
+    public function sukaPostingan()
+    {
+        return $this->belongsToMany(Postingan::class, 'suka_postingan', 'pengguna_id', 'postingan_id');
     }
 }
